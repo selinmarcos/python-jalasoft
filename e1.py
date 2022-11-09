@@ -4,7 +4,7 @@
               # at least one lower letter
 import random
 import string
-import json
+# import json
 
 #usamos la libreria random para generar numeros aleatorios  -2 para añadir las 2 letras
 
@@ -22,11 +22,34 @@ try:
         new_string = str(lines)[3:][:-3]
         # print(new_string)
         # a = json.loads(lines)
-        #aqui es la claveee tenemos que insertar con un iterador 'como dividir los elementos ?'
-        
-        # print(json.loads(lines))
+        spliting = new_string.split('}, ')
+        # new_spliting = spliting[len(spliting)-1][:-1]
+
+        # print(spliting)
+        # print(spliting[3][-3:])
+        # print(len(spliting))
+
+        ##a la ultima iteracio quitarle una llave
        
-        print(new_string.split("}."))
+        for index, i in enumerate(spliting):
+            print('llegamos aqui')
+            # print(i)
+            if index != len(spliting) - 1:
+            #   print(item, 'is NOT last in the list ✅')
+              if i[0:1] == '{':
+                print('primero')
+                f = i+'}'
+                # print(f)
+                pass_name.append(eval(f))
+              elif i[-1] == '}':
+                print('segundo')
+                f = '{'+i
+                # print(f)
+                pass_name.append(eval(f))
+            else:
+                print(i, 'is last in the list ❌') 
+                pass_name.append(eval(i))            
+        print(pass_name)
         # pass_name.append(new_string)
         # print(new_string)
 except:  
@@ -81,10 +104,10 @@ while True:
     elif user_input == '2':
         # print(password)
         app_to_get = input("Type the App Name that you want to get te password:")
-        # print(get_app_pass(app_to_get).app_name)
-        print('Your App Name & Password are: \n'+ str(get_app_pass(app_to_get)))
-        # NOTA: Como obtener el Key y Value de un Diccionario ? (No funciona hacerlo como en JS :-( ) 
 
+        # print('Your App Name & Password are: \n'+ str(get_app_pass(app_to_get)))
+        print("Your App Name is: "+ get_app_pass(app_to_get)['app_name']+ '\n'+
+               "Your Password is: " + get_app_pass(app_to_get)['app_pass'] )
         # print('Your App Name & Password are: '+ app_pwd.app_name + '\n' + app_pwd.app_pass)
         
     elif user_input == '3':
